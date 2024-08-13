@@ -24,13 +24,10 @@ const {
 
 const Routes = Router();
 
-Routes.route("/")
-  .post(UploadImageService, resizeImageGallery, createGallery)
-  .get(getGallerys);
+Routes.route("/").post(UploadImageService,resizeImageGallery,createGallery).get(getGallerys);
 
 Routes.route("/:id")
   .get(getValidator, getGallery)
   .delete(deleteValidator, deleteGallery)
-  .put( updateValidator, updateGallery);
+  .put(updateValidator , updateGallery);
 module.exports = Routes;
- 

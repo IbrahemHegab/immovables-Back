@@ -31,6 +31,6 @@ Routes.route("/")
 Routes.route("/:id")
   .get(getValidator, getGallery)
   .delete(deleteValidator, deleteGallery)
-  .put( updateValidator, updateGallery);
+  .put( updateValidator, resizeImageGallery, updateGallery);
 module.exports = Routes;
  

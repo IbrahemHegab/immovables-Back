@@ -117,8 +117,7 @@ exports.deleteOne = (Model) =>
   });
 exports.updateOne = (Model) =>
   expressAsyncHandler(async (req, res, next) => {
-    console.log(req.body)
-    
+    log
     const updateDocById = await Model.findByIdAndUpdate(
       req.params.id,
       req.body,

@@ -34,6 +34,8 @@ exports.UploadImageService = UploadMultiImage([
   { name: "images", maxCount: 8 },
 ]);
 exports.createGallery = expressAsyncHandler(async (req, res) => {
+
+
   const gallery = await createGallerysModel.create(req.body);
 
   res.status(200).json({
