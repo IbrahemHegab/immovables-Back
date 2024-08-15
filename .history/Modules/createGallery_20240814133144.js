@@ -34,7 +34,7 @@ const createGallery = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    driver: {
+    elevator: {
       type: Boolean,
       default: false,
     },
@@ -44,15 +44,15 @@ const createGallery = new mongoose.Schema(
     },
     kind: {
       type: String,
-      enum: ["villa-200-295", "villa-300-450", "apartment"],
+      enum: ["villa-200-395", "villa-300-450", "apartment"],
       default: "apartment",
     },
    
-    // status: {
-    //   type: String,
-    //   enum: ["sold", "available", "pawned"],
-    //   default: "pawned",
-    // },
+    status: {
+      type: String,
+      enum: ["sold", "available", "pawned"],
+      default: "pawned",
+    },
     images: [
       {
         image: String,

@@ -48,11 +48,11 @@ const createGallery = new mongoose.Schema(
       default: "apartment",
     },
    
-    // status: {
-    //   type: String,
-    //   enum: ["sold", "available", "pawned"],
-    //   default: "pawned",
-    // },
+    status: {
+      type: String,
+      enum: ["sold", "available", "pawned"],
+      default: "pawned",
+    },
     images: [
       {
         image: String,

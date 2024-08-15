@@ -5,7 +5,6 @@ const morgan = require("morgan");
 
 const dbCollection = require("./Config/config");
 const globalError = require("./Middleware/globalError");
-const RoutesAuth = require("./Routes/RoutesAuth")
 const RoutesUser = require("./Routes/RoutesUsers")
 const RoutesEmployees = require("./Routes/RoutesEmployees")
 const RoutesGallery = require("./Routes/RoutesGallerys")
@@ -23,7 +22,7 @@ if (process.env.NODE_ENV === "development") {
 }
 app.use(cors());
 
-app.use("/api/v1/auth", RoutesAuth);
+app.use("/api/v1/user", RoutesUser);
 app.use("/api/v1/user", RoutesUser);
 app.use("/api/v1/employees", RoutesEmployees);
 app.use("/api/v1/gallery", RoutesGallery);

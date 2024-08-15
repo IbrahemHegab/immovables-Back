@@ -47,7 +47,7 @@ exports.createUsers = expressAsyncHandler(async (req, res) => {
 exports.getUsers = factory.getAll(createUsersModel);
 exports.getUser = factory.getOne(createUsersModel);
 
-exports.deleteUser = expressAsyncHandler(async (req, res, next) => {
+exports.deleteUser =expressAsyncHandler(async (req, res, next) => {
   const deleteDoc = await createUsersModel.findByIdAndDelete(req.params.id);
   const baseUrl = `${process.env.BASE_URL}/admin/`;
 
@@ -68,4 +68,5 @@ exports.deleteUser = expressAsyncHandler(async (req, res, next) => {
   res.status(200).json({ message: "Delete Success", data: deleteDoc });
 });
 
-exports.updateUser = factory.updateOne(createUsersModel);
+
+exports.updateUser = factory.updateOne(createUsersModel)

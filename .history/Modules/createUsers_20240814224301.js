@@ -9,7 +9,7 @@ const createUsers = new mongoose.Schema(
     name: {
       type: String,
     },
-    password: {
+    name: {
       type: String,
     },
 
