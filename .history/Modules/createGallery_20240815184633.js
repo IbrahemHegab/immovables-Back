@@ -64,7 +64,7 @@ const createGallery = new mongoose.Schema(
 );
 
 const ImageURL = (doc) => {
-
+  console.log(doc);
 
   if (doc.images) {
     doc.images = doc.images.map((ele) => ({

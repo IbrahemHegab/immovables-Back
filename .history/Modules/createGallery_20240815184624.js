@@ -51,7 +51,7 @@ const createGallery = new mongoose.Schema(
     status: {
       type: String,
       enum: ["sold", "available", "pawned"],
-      default: "available",
+      default: "pawned",
     },
     images: [
       {
@@ -64,7 +64,7 @@ const createGallery = new mongoose.Schema(
 );
 
 const ImageURL = (doc) => {
-
+  console.log(doc);
 
   if (doc.images) {
     doc.images = doc.images.map((ele) => ({
