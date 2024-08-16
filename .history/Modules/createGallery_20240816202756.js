@@ -67,12 +67,9 @@ const ImageURL = (doc) => {
   if (doc.images) {
     doc.images = doc.images.map((ele) => {
       if (ele.image && !ele.image.includes(`${process.env.BASE_URL}/gallery`)) {
-        return {
-          ...ele,
-          image: `${process.env.BASE_URL}/gallery/${ele.image}`,
-        };
+        const image = `${process.env.BASE_URL}/gallery/${ele.image}`;
+        doc.images = image;
       }
-      return ele;
     });
   }
 };
