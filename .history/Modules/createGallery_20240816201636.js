@@ -9,7 +9,7 @@ const createGallery = new mongoose.Schema(
       type: Number,
     },
     rooms: {
-      type: Number,
+      type: Number, 
     },
     street: {
       type: Number,
@@ -47,7 +47,7 @@ const createGallery = new mongoose.Schema(
       enum: ["villa-200-295", "villa-300-450", "apartment"],
       default: "apartment",
     },
-
+   
     status: {
       type: String,
       enum: ["sold", "available", "pawned"],
@@ -64,19 +64,25 @@ const createGallery = new mongoose.Schema(
 );
 
 const ImageURL = (doc) => {
+
+
   if (doc.images) {
-    doc.images = doc.images.map((ele) => {
-      if (ele.image && !ele.image.includes(`${process.env.BASE_URL}/gallery`)) {
-        return {
-          ...ele,
-          image: `${process.env.BASE_URL}/gallery/${ele.image}`,
-        };
-      }
-      return ele;
-    });
+    doc.images = doc.images.map((ele) => {}
+  // if (doc.image && !doc.image.includes(`${process.env.BASE_URL}/gallery`)) {
+  //   const image = `${process.env.BASE_URL}/gallery/${doc.image}`;
+  //   doc.image = image;
+  // }
+      // image: `${process.env.BASE_URL}/gallery/${ele.image}`,
+      // يمكنك إضافة معلومات أخرى هنا إذا كنت بحاجة
+    );
   }
 };
-
+// const ImageURL = (doc) => {
+//   if (doc.image && !doc.image.includes(`${process.env.BASE_URL}/gallery`)) {
+//     const image = `${process.env.BASE_URL}/gallery/${doc.image}`;
+//     doc.image = image;
+//   }
+// };
 createGallery.post("init", (doc) => {
   ImageURL(doc);
 });

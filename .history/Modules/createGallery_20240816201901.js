@@ -65,18 +65,29 @@ const createGallery = new mongoose.Schema(
 
 const ImageURL = (doc) => {
   if (doc.images) {
-    doc.images = doc.images.map((ele) => {
-      if (ele.image && !ele.image.includes(`${process.env.BASE_URL}/gallery`)) {
-        return {
-          ...ele,
-          image: `${process.env.BASE_URL}/gallery/${ele.image}`,
-        };
+    doc.images = doc.images.map(
+      (ele) => {
+        console.log(ele);
+        
+        if (
+          ele.image &&
+          !ele.image.includes(`${process.env.BASE_URL}/gallery`)
+        ) {
+          const image = `${process.env.BASE_URL}/gallery/${ele.image}`;
+          doc.image = image;
+        }
       }
-      return ele;
-    });
+      // image: `${process.env.BASE_URL}/gallery/${ele.image}`,
+      // يمكنك إضافة معلومات أخرى هنا إذا كنت بحاجة
+    );
   }
 };
-
+// const ImageURL = (doc) => {
+//   if (doc.image && !doc.image.includes(`${process.env.BASE_URL}/gallery`)) {
+//     const image = `${process.env.BASE_URL}/gallery/${doc.image}`;
+//     doc.image = image;
+//   }
+// };
 createGallery.post("init", (doc) => {
   ImageURL(doc);
 });
