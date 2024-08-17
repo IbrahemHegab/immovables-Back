@@ -42,10 +42,6 @@ const createGallery = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    show: {
-      type: Boolean,
-      default: true,
-    },
     kind: {
       type: String,
       enum: ["villa-200-295", "villa-300-450", "apartment"],
@@ -58,10 +54,10 @@ const createGallery = new mongoose.Schema(
       default: "available",
     },
     images: [
-      {
-        image: String,
-        // يمكنك إضافة حقول أخرى إذا كنت بحاجة إلى ذلك
-      },
+      // {
+      //   image: String,
+      //   // يمكنك إضافة حقول أخرى إذا كنت بحاجة إلى ذلك
+      // },
     ],
   },
   { timestamps: true }

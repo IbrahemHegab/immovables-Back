@@ -42,9 +42,9 @@ const createGallery = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    show: {
+    warehouse: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     kind: {
       type: String,
