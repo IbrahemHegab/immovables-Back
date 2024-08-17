@@ -44,7 +44,7 @@ const createGallery = new mongoose.Schema(
     },
     show: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     kind: {
       type: String,
