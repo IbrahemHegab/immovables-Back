@@ -43,40 +43,32 @@ exports.getLoggedTaskAssignedTo = factory.getLoggedTaskassignedTo(TaskModel);
 exports.deleteSpecificNotification = expressAsyncHandler(
   async (req, res, next) => {
     try {
-      // العثور على المستخدم وتنبيه معين دون حذفه
-      const user = await createEmployeesModel.findOne({
-        _id: req.user._id,
-        "notifications._id": req.params.id,
-      });
+      // البحث عن المستخدم وتحديث التنبيهات
+      const notifications = await createEmployeesModel.findOneAndUpdate(
+        { _id: req.user._id }, // البحث عن المستخدم
+        { $pull: { notifications: { _id: req.params.id } } }, // إزالة التنبيه المحدد باستخدام $pull
+        { new: true } // إرجاع النسخة المحدثة من المستند
+      );
 
-      if (!user) {
+      // التحقق من وجود التنبيه
+      if (!notifications) {
         return res.status(404).json({
           status: "fail",
           message: "لم يتم العثور على التنبيه.",
         });
       }
 
-      // العثور على التنبيه المحدد للحصول على معلومات المهمة
-      const notification = user.notifications.id(req.params.id);
-      const taskId = notification.task; // استخراج معرّف المهمة المرتبطة
-
-      // تحديث المهمة بناءً على الإشعار قبل الحذف
+      // تحديث المهمة المرتبطة بالتنبيه
       await TaskModel.findOneAndUpdate(
-        { _id: taskId },
-        { show: "تم عرض المهمة علي الموظف" },
-        { new: true }
-      );
-
-      // بعد تحديث المهمة، قم بحذف التنبيه
-      const updatedUser = await createEmployeesModel.findOneAndUpdate(
-        { _id: req.user._id },
-        { $pull: { notifications: { _id: req.params.id } } }, // إزالة التنبيه المحدد باستخدام $pull
+        { _id: notifications.task }, // البحث عن المهمة المرتبطة
+        { show: "تم عرض المهمة علي الموظف" }, // تحديث حالة العرض
         { new: true } // إرجاع النسخة المحدثة من المستند
       );
 
+      // إرسال الرد النهائي
       res.status(200).json({
         status: "success",
-        data: updatedUser,
+        data: notifications,
       });
     } catch (error) {
       next(error); // تمرير الخطأ إلى middleware الخاص بالخطأ

@@ -13,7 +13,7 @@ const createEmployees = new mongoose.Schema(
       enum: ["manager", "accountant", "supervisor", "marketer"],
       default: "marketer",
     },
-    notifications: [{ assignedBy: String ,task:String}],
+    notifications: [{ assignedBy: String ,show}],
   },
   { timestamps: true }
 );

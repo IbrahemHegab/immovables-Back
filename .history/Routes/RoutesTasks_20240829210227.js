@@ -7,7 +7,6 @@ const {
   getLoggedTaskAssignedTo,
   deleteSpecificNotifcation,
   updateTask,
-  getOneTask,
 } = require("../Services/TasksService");
 const { protect, getLoggedUserData } = require("../Services/AuthService");
 
@@ -20,6 +19,5 @@ Routes.route("/assignTask").post(createTask).get(getTasks);
 Routes.get("/all-task", getLoggedUserData, getLoggedTask);
 Routes.get("/myTaskAssignedTo", getLoggedUserData, getLoggedTaskAssignedTo);
 Routes.put("/:id", updateTask);
-Routes.get("/:id", getOneTask);
 
 module.exports = Routes;

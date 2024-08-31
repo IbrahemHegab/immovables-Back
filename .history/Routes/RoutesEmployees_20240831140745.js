@@ -9,14 +9,13 @@ const {
   getNotifications,
 } = require("../Services/EmployeesService");
 const { protect, getLoggedUserData } = require("../Services/AuthService");
-const { deleteSpecificNotification } = require("../Services/TasksService");
-
+const { deleteSpecificNotifcation } = require("../Services/TasksService");
 
 const Routes = Router();
 Routes.use(protect);
 
 Routes.route("/").post(createEmployees).get(getEmployeess);
-Routes.route("/notifcation/:id").delete(deleteSpecificNotification);
+Routes.route("/notifcation/:id").delete(deleteE);
 
 Routes.route("/:id")
   .get(getEmployees)

@@ -18,10 +18,9 @@ const taskSchema = new mongoose.Schema(
     }, // الشخص الذي وزع المهمة
     status: {
       type: String,
-      enum: ["progressing", "review", "fulfilled", "rejected"],
+      enum: ["progressing","review", "fulfilled", "rejected"],
       default: "progressing",
     }, // حالة المهمة
-    show: String,
     reviewBy: { type: mongoose.Schema.Types.ObjectId, ref: "Employees" }, // الشخص الذي سيراجع المهمة
     reassignedTo: { type: mongoose.Schema.Types.ObjectId, ref: "Employees" }, // الشخص الذي أعيدت له المهمة
     completionDate: { type: Date }, // تاريخ إكمال المهمة
@@ -36,6 +35,8 @@ taskSchema.pre(/^find/, function (next) {
   }).populate({ path: "assignedBy", select: "name username role" });
   next();
 });
+
+
 
 const TaskModel = mongoose.model("Task", taskSchema);
 module.exports = TaskModel;

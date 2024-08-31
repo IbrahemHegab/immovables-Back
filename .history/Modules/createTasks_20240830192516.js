@@ -21,7 +21,7 @@ const taskSchema = new mongoose.Schema(
       enum: ["progressing", "review", "fulfilled", "rejected"],
       default: "progressing",
     }, // حالة المهمة
-    show: String,
+  
     reviewBy: { type: mongoose.Schema.Types.ObjectId, ref: "Employees" }, // الشخص الذي سيراجع المهمة
     reassignedTo: { type: mongoose.Schema.Types.ObjectId, ref: "Employees" }, // الشخص الذي أعيدت له المهمة
     completionDate: { type: Date }, // تاريخ إكمال المهمة
